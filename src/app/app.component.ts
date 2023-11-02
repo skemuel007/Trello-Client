@@ -12,13 +12,23 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.authService.getCurrenctUser()
     .subscribe({
-      next: (res) => {
-        console.log(res);
+      next: (currentUser) => {
+        this.authService.setCurrentUser(currentUser);
       },
       error: (err) => {
         console.log(err);
         this.authService.setCurrentUser(null);
       }
+    });
+
+    this.authService.currentUser$.subscribe(
+      res => {
+        console.log('res', res);
+      }
+    );
+
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      console.log('isLoggedIn');
     });
   }
   title = 'eltrello-client';

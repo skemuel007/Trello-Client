@@ -4,19 +4,27 @@ import { RegisterComponent } from './components/register/register.component';
 import { RouterModule, Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from "./services/authGuard.service";
 
 const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        // canActivate: [AuthGuardService]
     }
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes), ReactiveFormsModule,
     CommonModule],
-    providers: [AuthService],
+    providers: [AuthService, AuthGuardService],
     declarations: [
-      RegisterComponent
+      RegisterComponent,
+      LoginComponent
     ]
 })
 export class AuthModule {}

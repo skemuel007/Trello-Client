@@ -1,0 +1,6 @@
+{
+    "apiServer": {
+        "baseUrl": "http://localhost:3000/api",
+        "version": "v1"
+    }
+}

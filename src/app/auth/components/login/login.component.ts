@@ -5,17 +5,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'auth-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'auth-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent {
-
+export class LoginComponent {
   errorMessage: string | null = null;
 
   form = this.fb.group({
     email: ['', Validators.required],
-    username: ['', Validators.required],
     password: ['', Validators.required]
   });
 
@@ -25,7 +23,7 @@ export class RegisterComponent {
 
   onSubmit(): void {
     console.log('submit', this.form.value);
-    this.authService.register(this.form.value).subscribe(
+    this.authService.login(this.form.value).subscribe(
       {
         next: (currentUser) => {
           this.authService.setToken(currentUser);
@@ -34,10 +32,9 @@ export class RegisterComponent {
           this.router.navigateByUrl('/');
         },
         error: (err: HttpErrorResponse) => {
-          this.errorMessage = err.error.join(', ');
+          this.errorMessage = err.error.emailOrPassword
         }
       }
     )
   }
-
 }

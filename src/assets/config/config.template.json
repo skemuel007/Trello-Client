@@ -1,0 +1,6 @@
+{
+    "apiServer": {
+        "baseUrl": "${BASE_URL}",
+        "version": "v1"
+    }
+}
